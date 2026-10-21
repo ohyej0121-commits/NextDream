@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>넥스트드림 미디어팀 섬김 스케줄 (2026년 11–12월)</title>
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--tx:#1d2330;--mut:#6a7285;--ln:#d3d9e6;--hd:#d0e2f5;--ac:#2f6fdb;--acx:#fff;--bad:#c62828;--badbg:#fde8e8;--okbg:#e6f4ea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#14171f;--card:#1e222d;--tx:#e8ebf2;--mut:#98a0b3;--ln:#363c4c;--hd:#27405e;--ac:#5b9bff;--acx:#101522;--bad:#ff8a80;--badbg:#4a2326;--okbg:#1f3a2a}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#14171f;--card:#1e222d;--tx:#e8ebf2;--mut:#98a0b3;--ln:#363c4c;--hd:#27405e;--ac:#5b9bff;--acx:#101522;--bad:#ff8a80;--badbg:#4a2326;--okbg:#1f3a2a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 -apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+header{padding:16px 16px 4px;max-width:1100px;margin:auto}h1{font-size:19px;margin:0}header p{margin:4px 0 0;color:var(--mut);font-size:13px}
+nav{display:flex;gap:6px;padding:10px 16px;max-width:1100px;margin:auto;overflow-x:auto}
+nav button{border:1px solid var(--ln);background:var(--card);color:var(--tx);padding:8px 14px;border-radius:20px;font:inherit;white-space:nowrap;cursor:pointer}
+nav button.on{background:var(--ac);color:var(--acx);border-color:var(--ac)}
+main{max-width:1100px;margin:auto;padding:0 16px 40px}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:14px;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+h2{font-size:16px;margin:0 0 8px}.mut{color:var(--mut);font-size:13px}
+button.pri{background:var(--ac);color:var(--acx);border:0;padding:9px 16px;border-radius:8px;font:inherit;cursor:pointer}
+button.sec{background:none;border:1px solid var(--ln);color:var(--tx);padding:8px 14px;border-radius:8px;font:inherit;cursor:pointer}
+select{font:inherit;padding:7px;border-radius:8px;border:1px solid var(--ln);background:var(--card);color:var(--tx);max-width:100%}
+.dates{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin:12px 0}
+.dates label{border:1px solid var(--ln);border-radius:8px;padding:9px;display:flex;gap:8px;align-items:center;cursor:pointer}
+.chip{display:inline-block;padding:2px 9px;border-radius:12px;background:var(--badbg);color:var(--bad);margin:2px 3px 2px 0;font-size:13px}
+.ok{background:var(--okbg);color:var(--tx)}
+.sc{overflow-x:auto}table{border-collapse:collapse;width:100%}th,td{border:1px solid var(--ln);padding:6px 8px;text-align:center;font-size:13px}
+th{background:var(--hd)}td.l,th.l{text-align:left}td.x{background:var(--badbg);color:var(--bad);font-weight:700}
+.sch th.h{background:var(--hd);font-size:15px}.sch td:first-child{font-weight:700;width:68px}.sch select{width:100%;padding:4px}
+.bad{background:var(--badbg);color:var(--bad)}.warn{color:var(--bad);font-size:13px}
+</style></head><body>
+<header><h1>🎬 서울드림교회 넥스트드림 미디어팀 · 11–12월 섬김 스케줄</h1>
+<p>① 불가일 입력 → ② 날짜별/포지션별 확인 · 스케줄표는 팀장이 확정 후 따로 공유합니다</p>
+<p style="color:var(--tx);font-weight:600;margin-top:8px">💬 섬김에 요청사항이 있다면 전영은 팀장에게 언제든 연락주세요.</p></header>
+<nav id="nav"></nav><div id="warn" style="display:none;max-width:1068px;margin:6px 16px 0;padding:10px 14px;border-radius:10px;background:var(--badbg);color:var(--bad)"></div><main id="v"></main>
+<script>
+const DATES=['2026-11-01','2026-11-15','2026-11-22','2026-11-29','2026-12-06','2026-12-13','2026-12-20','2026-12-27'];
+const lab=d=>{const p=d.split('-');return (+p[1])+'월 '+(+p[2])+'일'+(d==='2026-11-29'?' (넥드전도집회)':'')};
+const PEOPLE=['정지희','김승욱','김희준','김요셉','김도희','이재민','진건우','홍소원','최서연','김지현','우구원','박성운','박지혜','신하은','윤현진','정영민','채지은','박예진','이현수','임유진','정우석','배창민','양승현','전영은'].sort((a,b)=>a.localeCompare(b,'ko'));
+const NOTE={};
+const OFF=['김지현'];
+const E=(l)=>l.map(x=>typeof x==='string'?{n:x,p:0}:x).sort((a,b)=>a.n.localeCompare(b.n,'ko'));
+const ELIG={sw:E(['정지희','김승욱']),sub:E(['김희준','김요셉','김도희']),vj:E(['최서연','김도희','김희준']),light:E(['이재민','진건우','홍소원']),sound:E(['배창민']),fd:E(['정우석']),cam:E(['박성운','박지혜','신하은','윤현진','정영민','채지은','박예진','이현수','임유진','우구원','양승현']),lead:E(['전영은']),vice:E(['김희준'])};
+const POS=[['팀장','lead'],['부팀장','vice'],['스위처','sw'],['자막','sub'],['조명','light'],['음향','sound'],['VJ','vj'],['카메라','cam'],['FD','fd']];
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let un={},sched={},tab='in',db=null,canEdit=true,sel=PEOPLE[0],status='';
+const un_ok=(n,d)=>(un[n]||[]).includes(d)||OFF.includes(n);
+function warn(t){const e=document.getElementById('warn');if(e){e.textContent=t;e.style.display='block'}}
+function nav(){document.getElementById('nav').innerHTML=[['in','① 불가일 입력'],['date','② 날짜별 보기'],['pos','② 포지션별 보기']].map(([k,t])=>`<button class="${tab===k?'on':''}" data-t="${k}">${t}</button>`).join('');
+ document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;render()})}
+function vIn(){const mine=un[sel]||[];
+ return `<div class="card"><h2>섬김이 <u>불가능한</u> 날짜를 체크해 주세요</h2>
+ <p class="mut">이름을 고르고, 부득이하게 못 하는 주일만 체크 후 저장. 모두 가능하면 체크 없이 저장하세요. (다시 들어와 수정 가능)</p>
+ <select id="who">${PEOPLE.map(n=>`<option ${n===sel?'selected':''}>${n}</option>`).join('')}</select>
+ <div class="dates">${DATES.map(d=>`<label><input type="checkbox" value="${d}" ${mine.includes(d)?'checked':''}> ${lab(d)}</label>`).join('')}</div>
+ <button class="pri" id="save">저장</button> <span class="mut" id="st">${esc(status)}</span></div>
+ <div class="card"><h2>제출 현황</h2><div>${PEOPLE.filter(n=>!OFF.includes(n)).map(n=>`<span class="chip ${n in un?'ok':''}">${n}${n in un?' ✓':''}</span>`).join('')}</div></div>`}
+function bindIn(){const w=document.getElementById('who');w.onchange=()=>{sel=w.value;status='';render()};
+ document.getElementById('save').onclick=async()=>{const btn=document.getElementById('save');
+ const ds=[...document.querySelectorAll('.dates input:checked')].map(c=>c.value);const who=sel;const put=t=>{status=t;const e=document.getElementById('st');if(e)e.textContent=t};
+ if(!db){put('⚠ 저장 실패: 저장소에 연결되지 않았습니다. Claude 계정에 로그인되어 있는지 확인하고 새로고침해 주세요.');return}
+ btn.disabled=true;put('저장 중…');
+ try{const ref=db.doc('unavail/m'+PEOPLE.indexOf(who));await ref.set({name:who,dates:ds});
+  const r=await ref.get();const o=r.exists?r.data():null;
+  if(!o||o.name!==who||JSON.stringify(o.dates||[])!==JSON.stringify(ds))throw new Error('verify');
+  un[who]=ds;put('✓ 저장되었습니다 ('+who+')')}
+ catch(e){put('⚠ 저장 실패: 저장되지 않았습니다. 잠시 후 다시 시도하거나, 로그인과 입력 권한을 확인해 주세요.')}
+ btn.disabled=false}}
+function vDate(){const miss=PEOPLE.filter(n=>!OFF.includes(n)&&!(n in un));
+ return `<div class="card"><h2>미제출 (${miss.length}명)</h2>${miss.map(n=>`<span class="chip">${n}</span>`).join('')||'<span class="mut">모두 제출 완료 🎉</span>'}</div><div class="grid">`+
+ DATES.map(d=>{const no=PEOPLE.filter(n=>(un[n]||[]).includes(d));return `<div class="card"><h2>${lab(d)} (주일)</h2><div class="mut">불가 ${no.length}명</div>${no.map(n=>`<span class="chip">${n}</span>`).join('')||'<span class="mut">없음</span>'}</div>`}).join('')+'</div>'}
+function vPos(){return POS.map(([nm,g])=>{const ms=ELIG[g].map(c=>c.n);
+ return `<div class="card sc"><h2>${nm}</h2><table><tr><th class="l">이름</th>${DATES.map(d=>`<th>${lab(d)}</th>`).join('')}</tr>`+
+ ms.map(n=>`<tr><td class="l">${n}</td>${DATES.map(d=>un_ok(n,d)?'<td class="x">✕</td>':`<td>${n in un?'○':'·'}</td>`).join('')}</tr>`).join('')+'</table></div>'}).join('')+'<p class="mut">✕ 불가 · ○ 가능 · · 미제출</p>'}
+function render(){nav();const v=document.getElementById('v');
+ v.innerHTML=({in:vIn,date:vDate,pos:vPos})[tab]();if(tab==='in')bindIn();}
+render();
+(async()=>{try{const u=await claude.use('user');const d=await claude.use('db');if(!d){warn('⚠ 저장소에 연결되지 않았습니다 (Claude 계정 로그인 필요). 지금은 입력해도 저장되지 않습니다.');return}db=d;db.collection('unavail').get().catch(()=>warn('⚠ 저장소 읽기에 실패했습니다. 새로고침해 주세요.'));canEdit=u?u.canEdit():false;
+ db.collection('unavail').onSnapshot(s=>{un={};s.docs.forEach(x=>{const o=x.data();if(o&&PEOPLE.includes(o.name))un[o.name]=Array.isArray(o.dates)?o.dates:[]});if(tab!=='in')render();else{const e=document.querySelector('.card:last-child div');if(e)e.innerHTML=PEOPLE.filter(n=>!OFF.includes(n)).map(n=>`<span class="chip ${n in un?'ok':''}">${n}${n in un?' ✓':''}</span>`).join('')}});
+ render()}catch(e){warn('⚠ 저장소 연결 중 오류가 발생했습니다. 새로고침해 주세요.')}})();
+</script></body></html>
